@@ -16,7 +16,7 @@ public class Main {
         System.out.println();
 
 
-        Collections.sort(people, new Person(2));
+        Collections.sort(people, new ComparePerson(2));
         System.out.println(people);
     }
 }
