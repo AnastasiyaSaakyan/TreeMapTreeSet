@@ -15,8 +15,32 @@ public class Main {
         System.out.println(people);
         System.out.println();
 
-
-        Collections.sort(people, new ComparePerson(2));
+        System.out.println(people);
+        Collections.sort(people, (o1, o2) -> {
+            int length1 = o1.getSurname().split("\\P{IsAlphabetic}+").length;
+            int length2 = o2.getSurname().split("\\P{IsAlphabetic}+").length;
+            int length = length1 - length2;
+            int maxWords = 2;
+            if (length1 > maxWords && length2 > maxWords) {
+                return Integer.compare(o1.getAge(), o2.getAge());
+            } else {
+                if (length > 0) {
+                    return 1;
+                } else if (length < 0) {
+                    return -1;
+                } else {
+                    int age = o1.getAge() - o2.getAge();
+                    if (age > 0) {
+                        return 1;
+                    } else if (age < 0) {
+                        return -1;
+                    } else {
+                        return 0;
+                    }
+                }
+            }
+        });
+        System.out.println("Сортировка по возрастанию знатности:");
         System.out.println(people);
     }
 }
